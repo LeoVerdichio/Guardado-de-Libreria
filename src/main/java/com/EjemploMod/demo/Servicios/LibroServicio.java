@@ -78,8 +78,8 @@ public class LibroServicio {
         }
     }
 
-    public void Listarlibros() {
+    public List<Libro> Listarlibros() {
         List<Libro> libros = librorepositorio.findAll();
-
+        return libros;
     }
 }
