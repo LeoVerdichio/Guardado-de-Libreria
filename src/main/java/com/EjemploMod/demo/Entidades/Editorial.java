@@ -20,14 +20,26 @@ public class Editorial {
  private String id;   
  
  private Boolean alta;
+ private String nombre;
 
     public Editorial() {
     }
 
-    public Editorial(String id, Boolean alta) {
+    public Editorial(String id, Boolean alta, String nombre) {
         this.id = id;
         this.alta = alta;
+        this.nombre = nombre;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+   
 
     public String getId() {
         return id;

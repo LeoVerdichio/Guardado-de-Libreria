@@ -3,17 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.EjemploMod.demo.Repositorios;
 
-import com.EjemploMod.demo.Entidades.Libro;
+import com.EjemploMod.demo.Entidades.Editorial;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-
-public interface LibroRepositorio extends JpaRepository<Libro, String> {
-
-    @Override
-    public List<Libro> findAll();
+/**
+ *
+ * @author Leoo
+ */
+public interface EditorialRepositorio extends JpaRepository<Editorial, String>{
+    
+public List<Editorial> findAll();    
+    
     
 }

@@ -9,22 +9,77 @@ import com.EjemploMod.demo.Entidades.Autor;
 import com.EjemploMod.demo.Entidades.Editorial;
 import com.EjemploMod.demo.Entidades.Libro;
 import com.EjemploMod.demo.Repositorios.LibroRepositorio;
+import java.util.List;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class LibroServicio {
 
+    private LibroRepositorio librorepositorio;
+
     @Autowired
-    LibroRepositorio librorepositorio;
+    public LibroServicio(LibroRepositorio librorepositorio) {
+        this.librorepositorio = librorepositorio;
+    }
+
     AutorServicio autorserv;
 
-    public void registrarlibro(Long isbn, String titulol,String nombreautor, Integer anio) throws Exception {
+    @Transactional(rollbackOn = {Exception.class})
+    public void registrarlibro(Long isbn, String titulol, String nombreautor, Integer anio) throws Exception {
+        validarlibro(titulol, nombreautor, anio, isbn);
         Libro libro = new Libro();
         libro.setIsbn(isbn);
         libro.setTitulo(titulol);
         libro.setAnio(anio);
-        autorserv.registrarautor(nombreautor,libro);
-       //editorial
-       librorepositorio.save(libro);
+        autorserv.registrarautor(nombreautor, libro);
+        //editorial
+        librorepositorio.save(libro);
     }
 
+    @Transactional
+    public Libro BuscarLibroPorId(String id) throws Exception {
+        Libro libro = librorepositorio.getById(id);
+        if (libro == null) {
+            throw new Exception("Libro Inexistente");
+
+        }
+        return libro;
+    }
+
+    public void validarlibro(String titulo1, String nombreautor, Integer anio, Long isbn) throws Exception {
+        if (titulo1.trim().isEmpty()) {
+            throw new Exception("Libro sin titulo");
+        }
+
+        if (nombreautor.trim().isEmpty()) {
+            throw new Exception("Autor sin nombre");
+
+        }
+
+        if (anio == null) {
+            throw new Exception("Ingrese Correctamente el anio");
+        }
+
+        if (isbn == null) {
+            throw new Exception("Libro sin ISBN");
+
+        }
+    }
+
+    @Transactional
+    public void BajaLibro(String id) throws Exception {
+        Libro libro = BuscarLibroPorId(id);
+        if (libro.getAlta() == true) {
+            libro.setAlta(false);
+        } else {
+            throw new Exception("Libro dado de baja");
+        }
+    }
+
+    public void Listarlibros() {
+        List<Libro> libros = librorepositorio.findAll();
+
+    }
 }

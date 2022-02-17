@@ -10,7 +10,9 @@ import com.EjemploMod.demo.Entidades.Libro;
 import com.EjemploMod.demo.Repositorios.AutorRepositorio;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AutorServicio  {
     
     AutorRepositorio autorrepositorio;
@@ -20,7 +22,7 @@ public class AutorServicio  {
         this.autorrepositorio = autorrepositorio;
     }
     
-    @Transactional(rollbackOn = Exception.class)
+    @Transactional(rollbackOn = {Exception.class})
     public void guardarautor(Autor autor) throws Exception {
         
         validarautor(autor);
@@ -32,7 +34,7 @@ public class AutorServicio  {
         autorrepositorio.save(autor);
         
     }
-    
+    @Transactional
     public void registrarautor(String nombre,Libro libro) throws Exception {
         Autor autor = new Autor();
         libro.setAutor(autor);
@@ -48,6 +50,7 @@ public class AutorServicio  {
         
     }
     
+    @Transactional    
     public Autor BuscarAutorPorId(String id) throws Exception {
         Autor autor = autorrepositorio.getById(id);        
         if (autor == null) {
@@ -58,6 +61,7 @@ public class AutorServicio  {
     }
 
     //metodos de alta y baja
+    @Transactional
     public void bajaautor(Autor autor, String id) throws Exception {
         BuscarAutorPorId(id);
         if (autor.getAlta() == true) {
