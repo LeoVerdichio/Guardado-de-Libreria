@@ -1,0 +1,36 @@
+.Libreriatitulo{
+text-align: right;
+padding-right:0;
+}
+
+.Form__libro {
+font-size: 1em;
+font-family: 'Courier New', Courier, monospace;
+margin:auto;
+padding: 1em 12em ;
+
+}
+
+.Container__registro{
+padding-top: 2em;
+margin: auto;
+
+}
+.registro__libro{
+text-align: center;
+font-size: 2em;
+font-family:'Architects Daughter', cursive;
+
+}
+.form-control{
+margin-bottom: 1em;
+border-color:darkgray;
+border: 1px double;
+}
+
+
+
+
+.nav-link {
+
+}

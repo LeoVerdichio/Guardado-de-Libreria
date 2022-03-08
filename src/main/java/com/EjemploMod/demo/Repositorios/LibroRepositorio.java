@@ -9,8 +9,9 @@ package com.EjemploMod.demo.Repositorios;
 import com.EjemploMod.demo.Entidades.Libro;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-
+@Repository
 public interface LibroRepositorio extends JpaRepository<Libro, String> {
 
     @Override
