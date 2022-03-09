@@ -44,17 +44,18 @@ public class LibroControlador {
     @GetMapping("/Formulario")
     public String MostrarFormulario(ModelMap model) {
         model.addAttribute("libro", new Libro());
-        
+//        model.addAttribute("autor",new Autor());
+//        model.addAttribute("editorial",new Editorial());
         return "libro/form-libro.html";
 }
     
-
+//                                                       @ModelAttribute Autor autor,@ModelAttribute Editorial editorial
     @PostMapping("/Formulario")
     public String ProcesarFormulario(@ModelAttribute Libro libro,ModelMap model){
         try{
             libroserv.registrarlibro(libro);
         }catch(Exception e){
-            System.out.println(model.addAttribute("error",e.getMessage()));
+           model.addAttribute("error",e.getMessage());
          return "libro/form-libro";
         }
      

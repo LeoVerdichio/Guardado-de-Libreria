@@ -31,6 +31,7 @@ public class LibroServicio {
     public void registrarlibro(Libro libro) throws Exception {
         validarlibro(libro);
         libro.setAlta(true);
+      
         librorepositorio.save(libro);
     }
 
@@ -60,7 +61,13 @@ public class LibroServicio {
 
         }
         
-       
+//        if (autor.getNombre().isEmpty()) {
+//            throw new Exception("Ingrese el nombre del autor");
+//        }
+//        
+//        if (editorial.getNombre().isEmpty()) {
+//            throw new Exception ("Ingrese el nombre del editorial");
+//        }
 
     }
 

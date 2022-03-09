@@ -37,13 +37,6 @@ public class AutorServicio {
 
     }
 
-    @Transactional
-    public void registrarautor(String nombre, Libro libro) throws Exception {
-        Autor autor = new Autor();
-        libro.setAutor(autor);
-        autor.setNombre(nombre);
-        guardarautor(autor);
-    }
 
     public void validarautor(Autor autor) throws Exception {
 

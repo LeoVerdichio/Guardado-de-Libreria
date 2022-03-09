@@ -24,17 +24,15 @@ public class EditorialServicio {
     }
 
     @Transactional
-    public void creareditorial(String nombre) throws Exception {
-        validareditorial(nombre);
-        Editorial editorial = new Editorial();
-        editorial.setNombre(nombre);
+    public void creareditorial(Editorial editorial) throws Exception {
+        validareditorial(editorial);
         editorial.setAlta(true);
         editorialrepo.save(editorial);
     }
 
-    public void validareditorial(String nombre) throws Exception {
-        if (nombre.isEmpty()) {
-            throw new Exception("Introduzca el nombre correctamente");
+    public void validareditorial(Editorial editorial) throws Exception {
+        if (editorial.getNombre().isEmpty()) {
+            throw new Exception("Introduzca el nombre del editorial");
         }
 
     }
