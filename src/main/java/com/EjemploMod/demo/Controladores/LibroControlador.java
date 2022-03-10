@@ -63,8 +63,10 @@ public class LibroControlador {
     
     }
 
-//    @GetMapping("/Lista")
-//    public String Listarlibros() {
-//        return "libro/lista-libros";
-//    }
+    @GetMapping("/Lista")
+    public String Listarlibros(ModelMap model) {
+     List<Libro>libros=libroserv.Listarlibros();
+     model.addAttribute("libros", libros);
+        return "libro/lista-libros";
+    }
 }

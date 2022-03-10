@@ -52,8 +52,9 @@ public class AutorControlador {
 
     @GetMapping("/ListaLibros")
     public String listarautores(ModelMap model){
+      List<Autor> autores = autorserv.listarautores();
+      model.addAttribute("autores", autores);
         
-        model.addAttribute("autores",autorserv.listarautores());
-        
+      return "autor/lista-autores";
     }
 }
