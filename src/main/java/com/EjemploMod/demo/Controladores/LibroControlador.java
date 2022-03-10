@@ -44,6 +44,10 @@ public class LibroControlador {
     @GetMapping("/Formulario")
     public String MostrarFormulario(ModelMap model) {
         model.addAttribute("libro", new Libro());
+        List<Autor>autores=autorserv.listarautores();
+        model.put("autores", autores);
+        List<Editorial>editoriales=editoserv.listareditorial();
+        model.put("editoriales", editoriales);
 //        model.addAttribute("autor",new Autor());
 //        model.addAttribute("editorial",new Editorial());
         return "libro/form-libro.html";
@@ -51,15 +55,15 @@ public class LibroControlador {
     
 //                                                       @ModelAttribute Autor autor,@ModelAttribute Editorial editorial
     @PostMapping("/Formulario")
-    public String ProcesarFormulario(@ModelAttribute Libro libro,ModelMap model){
+    public String ProcesarFormulario(@ModelAttribute Libro libro,ModelMap model,String autorid,String editorialid){
         try{
-            libroserv.registrarlibro(libro);
+            libroserv.registrarlibro(libro,autorid,editorialid);
         }catch(Exception e){
            model.addAttribute("error",e.getMessage());
          return "libro/form-libro";
         }
      
-        return "libro/lista-libros";
+        return "redirect:/Libros/Lista";
     
     }
 
@@ -69,4 +73,5 @@ public class LibroControlador {
      model.addAttribute("libros", libros);
         return "libro/lista-libros";
     }
+    
 }

@@ -19,21 +19,31 @@ import org.springframework.stereotype.Service;
 public class LibroServicio {
 
     private LibroRepositorio librorepositorio;
+    private AutorServicio autorserv;
+    private EditorialServicio editoserv;
 
     @Autowired
-    public LibroServicio(LibroRepositorio librorepositorio) {
+    public LibroServicio(LibroRepositorio librorepositorio, AutorServicio autorserv, EditorialServicio editoserv) {
         this.librorepositorio = librorepositorio;
+        this.autorserv = autorserv;
+        this.editoserv = editoserv;
     }
 
-    AutorServicio autorserv;
+  
 
     @Transactional(rollbackOn = {Exception.class})
-    public void registrarlibro(Libro libro) throws Exception {
-        validarlibro(libro);
+    public void registrarlibro(Libro libro,String autorid,String editorialid) throws Exception {
+        validarlibro(libro,autorid);
         libro.setAlta(true);
-      
+        Autor autor=autorserv.BuscarAutorPorId(autorid);
+        libro.setAutor(autor);
+        Editorial editorial=editoserv.BuscarEditorialporId(editorialid);
+        libro.setEditorial(editorial);
         librorepositorio.save(libro);
     }
+
+
+   
 
     @Transactional
     public Libro BuscarLibroPorId(String id) throws Exception {
@@ -46,7 +56,7 @@ public class LibroServicio {
         }
     }
 
-    public void validarlibro(Libro libro) throws Exception {
+    public void validarlibro(Libro libro,String autorid) throws Exception {
         if (libro.getIsbn() == null) {
             throw new Exception("Ingrese el isbn");
         }
@@ -59,6 +69,10 @@ public class LibroServicio {
         if (libro.getAnio() == null) {
             throw new Exception("Ingrese el anio");
 
+        }
+        
+        if (autorid.isEmpty()) {
+            throw new Exception("Ingrese la zona");
         }
         
 //        if (autor.getNombre().isEmpty()) {

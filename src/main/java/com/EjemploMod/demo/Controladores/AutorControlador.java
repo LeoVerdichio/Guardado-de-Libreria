@@ -47,7 +47,7 @@ public class AutorControlador {
           return "autor/form-autor";
         }
         
-        return "autor/form-autor";
+        return "redirect:/Autor/ListaLibros";
     }
 
     @GetMapping("/ListaLibros")

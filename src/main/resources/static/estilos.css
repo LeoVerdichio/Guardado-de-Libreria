@@ -40,7 +40,8 @@
 .tablas{
     margin-left: 5em;
     margin-right: 5em;
-    padding:2em;
+text-align: center;
+
    
 }
 
@@ -54,4 +55,16 @@
 
 body{
    background-image: url("../img.css/fondo.jpg");
+}
+
+.form-select{
+    font-size: 1em;
+    font-family: 'Courier New', Courier, monospace;
+    color:black;
+    margin-top: 2em
+   
+}
+
+#button__submit{
+ margin:1em;
 }

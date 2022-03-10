@@ -56,6 +56,12 @@ public class Editorial {
     public void setAlta(Boolean alta) {
         this.alta = alta;
     }
+
+    @Override
+    public String toString() {
+        return nombre ;
+    }
+    
     
  
 }

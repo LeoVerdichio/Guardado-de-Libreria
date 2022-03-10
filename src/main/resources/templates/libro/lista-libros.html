@@ -51,7 +51,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link text-white">
+                                <a href="/Libros/Formulario" class="nav-link text-white">
                                     <svg class="bi d-block mx-auto mb-1" width="24" height="24">
                                     <use xlink:href="#grid"></use>
                                     </svg>
@@ -64,6 +64,22 @@
                                     <use xlink:href=""></use>
                                     </svg>
                                     Registrar Autor
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/Editorial/FormEditorial" class="nav-link text-white">
+                                    <svg class="bi d-block mx-auto mb-1" width="24" height="24">
+                                    <use xlink:href="#people-circle"></use>
+                                    </svg>
+                                    Registar Editorial
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/Editorial/ListaEditorial" class="nav-link text-white">
+                                    <svg class="bi d-block mx-auto mb-1" width="24" height="24">
+                                    <use xlink:href="#people-circle"></use>
+                                    </svg>
+                                    Editoriales
                                 </a>
                             </li>
                         </ul>
@@ -83,6 +99,9 @@
                         <th scope="col">Año</th>
                         <th scope="col">Ejemplares Prestados</th>
                         <th scope="col">Ejemplares Restantes</th>
+                        <th scope="col">Autor</th>
+                        <th scope="col">Editorial</th>
+
 
                     </tr>
                 </thead>
@@ -95,6 +114,8 @@
                         <td th:text="${libro.anio}"></td>
                         <td th:text="${libro.ejemplaresprestados}"></td>
                         <td th:text="${libro.ejemplaresrestantes}"></td>
+                        <td th:text="${libro.autor}"></td>
+                        <td th:text="${libro.editorial}"></td>
 
 
 
