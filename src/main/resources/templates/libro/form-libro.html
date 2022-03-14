@@ -14,7 +14,9 @@
     </head>
 
     <body>
+
         <header>
+
             <div class="px-3 py-2 bg-dark text-white">
                 <div class="container">
                     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -24,6 +26,8 @@
                             <use xlink:href="#bootstrap"></use>
                             </svg>
                         </a>
+                        
+
 
                         <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
                             <li>
@@ -43,7 +47,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="/Autor/ListaLibros" class="nav-link text-white">
+                                <a href="/Autor/ListaAutores" class="nav-link text-white">
                                     <svg class="bi d-block mx-auto mb-1" width="24" height="24">
                                     <use xlink:href="#table"></use>
                                     </svg>
@@ -99,7 +103,7 @@
 
                 <p class="warning" th:text="${error != null ? error : ''}" ></p>
                 <label for="isbn" class="form_label_isbn">ISBN </label>
-                <input type="text"  name="isbn" th:field="*{isbn}" class="form-control" >
+                <input type="number"  name="isbn" th:field="*{isbn}" class="form-control" >
 
                 <p class="warning" th:text="${error != null ? error : ''}" ></p>
                 <label for="titulo" class="form_label_libro">Titulo</label>
@@ -120,20 +124,21 @@
                 <select class="form-select" name="autorid">
                     <option selected>Selecciona un Autor</option>
                     <option th:each="autor:${autores}" th:value="${autor.id}" th:text="${autor.nombre}"> </option>
-                   
+
                 </select>
-                
+                <a class="btn btn-primary" th:href="@{/Autor/FormAutor}" id="boton" >Nuevo Autor</a>
                 <select class="form-select" name="editorialid">
                     <option selected>Selecciona un Editorial</option>
                     <option th:each="editorial:${editoriales}" th:value="${editorial.id}" th:text="${editorial.nombre}"> </option>
-                   
+
                 </select>
+                <button id="boton" class="btn btn-primary">Nuevo Editorial</button>
 
 
-<!--                <label>Autores</label>
-                <select class="selects" name="autorid">
-                    <option th:each="autor:${autores}" th:value="${autor.id}" th:text="${autor.nombre}"> </option>
-                </select>>-->
+                <!--                <label>Autores</label>
+                                <select class="selects" name="autorid">
+                                    <option th:each="autor:${autores}" th:value="${autor.id}" th:text="${autor.nombre}"> </option>
+                                </select>>-->
 
                 <!--                  
                                     <label for="autor" class="form_label_Año">Autor</label>

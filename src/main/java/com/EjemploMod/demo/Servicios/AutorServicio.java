@@ -67,6 +67,10 @@ public class AutorServicio {
 
         }
     }
+    
+    public void editar(Autor autor,String nombre){
+        autor.setNombre(nombre);
+    }
 
     public void altaautor(Autor autor, String id) throws Exception {
         BuscarAutorPorId(id);
@@ -81,5 +85,12 @@ public class AutorServicio {
 
         return autores;
 
+    }
+    
+    public void eliminarautor(String autorid) throws Exception{
+//        Autor autor=BuscarAutorPorId(autorid);
+//        autorrepositorio.delete(autor);
+        autorrepositorio.deleteById(autorid);
+        
     }
 }

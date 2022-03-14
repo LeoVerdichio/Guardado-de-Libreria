@@ -67,6 +67,32 @@ public class LibroControlador {
     
     }
 
+//     @GetMapping("/NuevoAutor")
+//    public String mostrarformulario(ModelMap model) {
+//       
+//             model.addAttribute("autor", new Autor());
+//        
+//
+//       
+//
+//        return "autor/form-autor";
+//
+//    }
+//    
+//    
+//    @PostMapping("/NuevoAutor")
+//    public String nuevoautor1(@ModelAttribute Autor autor,ModelMap model){
+//        try{
+//            autorserv.guardarautor(autor);
+//            
+//        }catch(Exception ex){
+//          model.addAttribute("error", ex.getMessage());
+//          return "autor/form-autor";
+//        }
+//       
+//        return "redirect:/Libros/Formulario";
+//    }
+    
     @GetMapping("/Lista")
     public String Listarlibros(ModelMap model) {
      List<Libro>libros=libroserv.Listarlibros();

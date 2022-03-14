@@ -65,6 +65,27 @@ body{
    
 }
 
-#button__submit{
- margin:1em;
+#boton{
+ margin-top: 1em;
 }
+
+#botonregis{
+   margin-right: 10em;
+   margin-top: 2em;
+   margin-left: 0em;
+}
+
+#botonlogin{
+    
+   margin-top: 2em;
+
+}
+
+/*.botondelete{
+    background-attachment: url("../img.css/eliminar.png");
+    background-image: url("../img.css/eliminar.png");
+    width:18px;
+    height:21px;
+        */
+/*}*/
+
