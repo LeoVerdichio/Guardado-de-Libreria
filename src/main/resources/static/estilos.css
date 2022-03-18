@@ -23,6 +23,7 @@
     font-size: 2em;
     font-family:'Architects Daughter', cursive;
     color: white;
+    margin-bottom: 2em;
 
 }
 .form-control{
@@ -80,6 +81,14 @@ body{
    margin-top: 2em;
 
 }
+
+.form-sign-in{
+margin: 10em 12em;
+
+
+}
+
+
 
 /*.botondelete{
     background-attachment: url("../img.css/eliminar.png");
