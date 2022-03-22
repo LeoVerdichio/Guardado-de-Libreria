@@ -89,6 +89,13 @@ public class ClienteServicio implements UserDetailsService {
         }
 
     }
+    
+    public List<Cliente> listarclientes(){
+        
+    List<Cliente> clientes=clienterepo.findAll();
+    
+        return clientes;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -100,8 +107,9 @@ public class ClienteServicio implements UserDetailsService {
         }
         
         List<GrantedAuthority> permisos=new ArrayList<>();
-        GrantedAuthority rolespermisos=new SimpleGrantedAuthority("ROL_" + cliente.getRoles().toString());
+        GrantedAuthority rolespermisos=new SimpleGrantedAuthority("ROLE_" + cliente.getRoles().toString());
         permisos.add(rolespermisos);
+        System.out.println(cliente.getRoles().toString());
         
         return new User(cliente.getEmail(),cliente.getPassword(),permisos);
     }

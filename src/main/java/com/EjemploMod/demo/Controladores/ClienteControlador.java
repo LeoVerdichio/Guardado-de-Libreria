@@ -7,7 +7,9 @@ package com.EjemploMod.demo.Controladores;
 
 import com.EjemploMod.demo.Entidades.Cliente;
 import com.EjemploMod.demo.Servicios.ClienteServicio;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/Cliente")
+@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 public class ClienteControlador {
 
     ClienteServicio clienteserv;
@@ -26,37 +29,18 @@ public class ClienteControlador {
     public ClienteControlador(ClienteServicio clienteserv) {
         this.clienteserv = clienteserv;
     }
+    
+    
+    @GetMapping("/ListarClientes")
+    public String listarclientes(ModelMap model){
+    List<Cliente>clientes=clienteserv.listarclientes();
+    model.addAttribute("clientes", clientes);
+    
+    return "cliente/listarclientes";
+        
+    }
 
-//    @GetMapping("/SingIn")
-//    public String SingIn(ModelMap model) {
-//
-//        model.addAttribute("cliente", new Cliente());
-//
-//        return "cliente/Sing-in";
-//    }
-//
-//    @PostMapping("/SingIn")
-//    public String procesarSingIn(@ModelAttribute Cliente cliente, ModelMap model) {
-//        try {
-//            clienteserv.registrarcliente(cliente);
-//
-//        } catch (Exception ex) {
-//            model.addAttribute("error", ex.getMessage());
-//            return "cliente/Sing-in";
-//        }
-//        return "cliente/login";
-//
-//    }
 
-   
-//        
-//        @GetMapping("/Login")
-//    public String loginFormulario(@RequestParam(required=false) String error,ModelMap model){
-//        if (error != null) {
-//            model.put("error", "Email o Contraseña incorrecta");
-//        }
-//        return "login";
-//    }
         
         
 

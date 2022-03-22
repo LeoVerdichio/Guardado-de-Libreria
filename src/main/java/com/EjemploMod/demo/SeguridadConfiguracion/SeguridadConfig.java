@@ -22,15 +22,10 @@ public class SeguridadConfig extends WebSecurityConfigurerAdapter {
 
    
     
-
+    @Autowired
     public ClienteServicio clienteServicio;
 
-    @Autowired
-    public SeguridadConfig(ClienteServicio clienteServicio) {
-        this.clienteServicio = clienteServicio;
-    }
-
-    
+      
     @Autowired
     public void ConfigureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 
@@ -51,12 +46,12 @@ public class SeguridadConfig extends WebSecurityConfigurerAdapter {
                .loginProcessingUrl("/logincheck")
                .usernameParameter("email")
                .passwordParameter("password")
-               .defaultSuccessUrl("/")
+               .defaultSuccessUrl("/Libros/Lista")
                .failureUrl("/Login/login?error=true").permitAll()
                .and()
                .logout()
                .logoutUrl("/logout")
-               .logoutSuccessUrl("/login").permitAll()
+               .logoutSuccessUrl("/Login/login").permitAll()
                .and().csrf().disable();
                
    }
