@@ -1,0 +1,100 @@
+.Libreriatitulo{
+    text-align: right;
+    padding-right:0;
+}
+
+.Form__libro {
+    font-size: 1em;
+    font-family: 'Courier New', Courier, monospace;
+    margin:auto;
+    padding: 1em 12em ;
+    color: white;
+
+}
+
+.Container__registro{
+    padding-top: 2em;
+    margin: auto;
+    
+
+}
+.registro__libro{
+    text-align: center;
+    font-size: 2em;
+    font-family:'Architects Daughter', cursive;
+    color: white;
+    margin-bottom: 2em;
+
+}
+.form-control{
+    margin-bottom: 1em;
+    border-color:darkgray;
+    border: 1px double;
+}
+
+
+.warning{
+    font-size:14px;
+    color:red;  
+}
+
+.tablas{
+    margin-left: 5em;
+    margin-right: 5em;
+text-align: center;
+
+   
+}
+
+.titulos{
+  font-family:'Architects Daughter', cursive;
+  font-size: 3em;
+  text-align: center;
+  margin:1em;
+  color:white;
+}
+
+body{
+   background-image: url("../img.css/fondo.jpg");
+}
+
+.form-select{
+    font-size: 1em;
+    font-family: 'Courier New', Courier, monospace;
+    color:black;
+    margin-top: 2em
+   
+}
+
+#boton{
+ margin-top: 1em;
+}
+
+#botonregis{
+   margin-right: 10em;
+   margin-top: 2em;
+   margin-left: 0em;
+}
+
+#botonlogin{
+    
+   margin-top: 2em;
+
+}
+
+.form-sign-in{
+margin: 10em 12em;
+
+
+}
+
+
+
+/*.botondelete{
+    background-attachment: url("../img.css/eliminar.png");
+    background-image: url("../img.css/eliminar.png");
+    width:18px;
+    height:21px;
+        */
+/*}*/
+

@@ -14,7 +14,7 @@ public class Libro {
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
 
-    private long isbn;
+    private Long isbn;
     private String titulo;
     private Integer anio;
     private Integer ejemplaresprestados;
@@ -27,6 +27,23 @@ public class Libro {
     @ManyToOne
     Editorial editorial;
 
+    public Libro() {
+    }
+
+    public Libro(String id, Long isbn, String titulo, Integer anio, Integer ejemplaresprestados, Integer ejemplaresrestantes, Boolean alta, Autor autor, Editorial editorial) {
+        this.id = id;
+        this.isbn = isbn;
+        this.titulo = titulo;
+        this.anio = anio;
+        this.ejemplaresprestados = ejemplaresprestados;
+        this.ejemplaresrestantes = ejemplaresrestantes;
+        this.alta = alta;
+        this.autor = autor;
+        this.editorial = editorial;
+    }
+
+    
+
   
     public String getId() {
         return id;
@@ -36,11 +53,11 @@ public class Libro {
         this.id = id;
     }
 
-    public long getIsbn() {
+    public Long getIsbn() {
         return isbn;
     }
 
-    public void setIsbn(long isbn) {
+    public void setIsbn(Long isbn) {
         this.isbn = isbn;
     }
 

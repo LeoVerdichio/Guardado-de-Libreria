@@ -10,6 +10,7 @@ import com.EjemploMod.demo.Entidades.Editorial;
 import com.EjemploMod.demo.Entidades.Libro;
 import com.EjemploMod.demo.Repositorios.LibroRepositorio;
 import java.util.List;
+import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,57 +19,73 @@ import org.springframework.stereotype.Service;
 public class LibroServicio {
 
     private LibroRepositorio librorepositorio;
+    private AutorServicio autorserv;
+    private EditorialServicio editoserv;
 
     @Autowired
-    public LibroServicio(LibroRepositorio librorepositorio) {
+    public LibroServicio(LibroRepositorio librorepositorio, AutorServicio autorserv, EditorialServicio editoserv) {
         this.librorepositorio = librorepositorio;
+        this.autorserv = autorserv;
+        this.editoserv = editoserv;
     }
 
-    AutorServicio autorserv;
+  
 
     @Transactional(rollbackOn = {Exception.class})
-    public void registrarlibro(Long isbn, String titulol, String nombreautor, Integer anio) throws Exception {
-        validarlibro(titulol, nombreautor, anio, isbn);
-        Libro libro = new Libro();
-        libro.setIsbn(isbn);
-        libro.setTitulo(titulol);
-        libro.setAnio(anio);
-        autorserv.registrarautor(nombreautor, libro);
-        //editorial
+    public void registrarlibro(Libro libro,String autorid,String editorialid) throws Exception {
+        validarlibro(libro,autorid);
+        libro.setAlta(true);
+        Autor autor=autorserv.BuscarAutorPorId(autorid);
+        libro.setAutor(autor);
+        Editorial editorial=editoserv.BuscarEditorialporId(editorialid);
+        libro.setEditorial(editorial);
         librorepositorio.save(libro);
     }
 
+
+   
+
     @Transactional
     public Libro BuscarLibroPorId(String id) throws Exception {
-        Libro libro = librorepositorio.getById(id);
-        if (libro == null) {
-            throw new Exception("Libro Inexistente");
-
-        }
-        return libro;
-    }
-
-    public void validarlibro(String titulo1, String nombreautor, Integer anio, Long isbn) throws Exception {
-        if (titulo1.trim().isEmpty()) {
-            throw new Exception("Libro sin titulo");
-        }
-
-        if (nombreautor.trim().isEmpty()) {
-            throw new Exception("Autor sin nombre");
-
-        }
-
-        if (anio == null) {
-            throw new Exception("Ingrese Correctamente el anio");
-        }
-
-        if (isbn == null) {
-            throw new Exception("Libro sin ISBN");
-
+        Optional<Libro> option = librorepositorio.findById(id);
+        if (option.isPresent()) {
+            Libro libro = option.get();
+            return libro;
+        } else {
+            throw new Exception("Libro no encontrado");
         }
     }
 
-    @Transactional
+    public void validarlibro(Libro libro,String autorid) throws Exception {
+        if (libro.getIsbn() == null) {
+            throw new Exception("Ingrese el isbn");
+        }
+
+        if (libro.getTitulo().isEmpty()) {
+            throw new Exception("Ingrese el titulo");
+
+        }
+
+        if (libro.getAnio() == null) {
+            throw new Exception("Ingrese el anio");
+
+        }
+        
+        if (autorid.isEmpty()) {
+            throw new Exception("Ingrese la zona");
+        }
+        
+//        if (autor.getNombre().isEmpty()) {
+//            throw new Exception("Ingrese el nombre del autor");
+//        }
+//        
+//        if (editorial.getNombre().isEmpty()) {
+//            throw new Exception ("Ingrese el nombre del editorial");
+//        }
+
+    }
+
+    @Transactional(rollbackOn = {Exception.class})
     public void BajaLibro(String id) throws Exception {
         Libro libro = BuscarLibroPorId(id);
         if (libro.getAlta() == true) {
@@ -77,9 +94,10 @@ public class LibroServicio {
             throw new Exception("Libro dado de baja");
         }
     }
+//modificar (Alta)
 
-    public void Listarlibros() {
+    public List<Libro> Listarlibros() {
         List<Libro> libros = librorepositorio.findAll();
-
+        return libros;
     }
 }
